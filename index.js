@@ -6,7 +6,7 @@ port.open()
 let count = 1
 setInterval(() => {
   console.log(count)
-  isOpen = !isOpen
   port.write(isOpen)
+  isOpen = !isOpen
   count ++
 }, 1000)

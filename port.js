@@ -9,6 +9,11 @@ const port = new SerialPort('/dev/tty.usbserial-14440', {
   autoOpen: false
 })
 
+// 接收数据
+port.on('data', function (data) {
+  console.log('接收到的数据：' + data.toString('hex'))
+})
+
 let device = 'unconnected'
 
 // 串口打开
@@ -25,11 +30,6 @@ function open () {
 // 给串口发送数据
 function write (isOpen) {
   if (device === 'connected') {
-    // 接收数据
-    port.on('data', function (data) {
-      console.log('接收到的数据：' + data.toString('hex'))
-    })
-    
     // 发送 hex
     let data1 = [0x55, 0x56, 0x00, 0x00, 0x00, 0x01, 0x01, 0xAD]  // 继电器1开
     let data2 = [0x55, 0x56, 0x00, 0x00, 0x00, 0x01, 0x02, 0xAE]  // 继电器1关
