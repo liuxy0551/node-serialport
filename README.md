@@ -4,7 +4,6 @@
 
 官方文档 v4.0.1：https://github.com/node-serialport/node-serialport/blob/4.0.1/README.md
 
-https://www.cnblogs.com/TLScott/p/10358534.html
 
 #### 1、查看串口列表
 
