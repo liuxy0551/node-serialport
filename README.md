@@ -4,9 +4,12 @@
 
 官方文档 v4.0.1：https://github.com/node-serialport/node-serialport/blob/4.0.1/README.md
 
+websocket - npm：https://www.npmjs.com/package/websocket
+websocket - github：https://github.com/theturtle32/WebSocket-Node#note-for-windows-users
+
+#### KeyWords: node、serialport、websocket
 
 #### 1、查看串口列表
-
 ```
 node list.js
 ```
@@ -16,3 +19,11 @@ node list.js
 | ------ | ---------- | ---------- |
 | open   | 打开串口   | -          |
 | write  | 开关继电器 | true/false |
+
+
+#### 3、通过 websocket 与服务端通信
+
+```
+node websocket.js
+```
+
