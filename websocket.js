@@ -1,6 +1,7 @@
-var WebSocketClient = require('websocket').client
+const WebSocketClient = require('websocket').client
+const port = require('./port')
 
-var client = new WebSocketClient()
+let client = new WebSocketClient()
 
 // 连接失败
 client.on('connectFailed', function (error) {
@@ -22,8 +23,14 @@ client.on('connect', function (connection) {
   connection.on('message', function (message) {
     if (message.type === 'utf8') {
       console.log("Received: '" + message.utf8Data + "'")
+
+      port.write(message.utf8Data === 'open')
     }
   })
 })
 
-client.connect('ws://30.40.44.176:9090/door/1')
+module.exports = {
+  client
+}
+
+// client.connect('ws://30.40.44.176:9090/door/1')
