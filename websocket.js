@@ -8,6 +8,8 @@ client.on('connectFailed', function (error) {
   console.log('Connect Error: ' + error.toString())
 })
 
+let start = new Date()
+
 client.on('connect', function (connection) {
   // 连接成功
   console.log('WebSocket Client Connected')
@@ -16,15 +18,22 @@ client.on('connect', function (connection) {
     console.log('Connection Error: ' + error.toString())
   })
   // 断开连接
-  connection.on('close', function () {
-    console.log('echo-protocol Connection Closed')
+  connection.on('close', function (e) {
+    console.log('上次连接时长：' + (new Date() - start) + 'ms')
+    console.log('echo-protocol Connection Closed, code: ' + e)
+    client.connect(global.wsServer)
   })
   // 接收数据
   connection.on('message', function (message) {
     if (message.type === 'utf8') {
       console.log("Received: '" + message.utf8Data + "'")
 
-      port.write(message.utf8Data === 'open')
+      let isOpen
+      message.utf8Data === 'open' && (isOpen = true)
+      message.utf8Data === 'close' && (isOpen = false)
+      if (isOpen === true || isOpen === false) {
+        port.write(isOpen)
+      }
     }
   })
 })

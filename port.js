@@ -1,7 +1,7 @@
 const SerialPort = require('serialport')
 
 // 设置串口号，波特率，关闭自动开启
-const port = new SerialPort('/dev/tty.usbserial-14440', {
+const port = new SerialPort('/dev/tty.usbserial-1410', {
   baudRate: 9600,
   dataBits: 8, // 数据位
   parity: 'none', // 无校验
